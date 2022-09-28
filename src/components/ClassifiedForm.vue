@@ -77,7 +77,7 @@
 
     <div v-else-if="editable.listingType == 'Job'">
       <div class="form-floating mb-3">
-        <input type="text" v-model="editable.listing.Company" class="form-control" name="company" required
+        <input type="text" v-model="editable.listing.company" class="form-control" name="company" required
           maxlength="50">
         <label for="company">Company</label>
       </div>

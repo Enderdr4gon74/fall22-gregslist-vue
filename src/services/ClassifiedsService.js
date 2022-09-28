@@ -4,6 +4,11 @@ import { SandboxApi } from "./AxiosService.js"
 
 class ClassifiedsService {
 
+  async getClassifiedsAndReturn() {
+    const res = await SandboxApi.get('api/classifieds')
+    return res.data.map(c => new Classified(c))
+  }
+
   async getClassifieds() {
     const res = await SandboxApi.get('api/classifieds')
     AppState.classifieds = res.data.map(c => new Classified(c))

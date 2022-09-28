@@ -12,25 +12,25 @@
           </button>
         </div>
         <div class="d-flex flex-column align-items-start border-start mt-4 ps-2">
-          <button class="btn mb-4">
+          <button class="btn mb-4" @click="filterCars">
             <span class="text-success lighten-30 selectable text-uppercase">
               Cars
             </span>
           </button>
   
-          <button class="btn mb-4">
+          <button class="btn mb-4" @click="filterJobs">
             <span class="text-success lighten-30 selectable text-uppercase">
               Jobs
             </span>
           </button>
   
-          <button class="btn mb-4">
+          <button class="btn mb-4" @click="filterHouses">
             <span class="text-success lighten-30 selectable text-uppercase">
               Houses
             </span>
           </button>
   
-          <button class="btn">
+          <button class="btn" @click="showAll">
             <span class="text-success lighten-30 selectable text-uppercase">
               All
             </span>
@@ -63,12 +63,25 @@ import { AppState } from './AppState'
 import ClassifiedForm from './components/ClassifiedForm.vue'
 import Login from './components/Login.vue'
 import Navbar from './components/Navbar.vue'
+import { classifiedsService } from './services/ClassifiedsService.js'
 
 export default {
   setup() {
     return {
       appState: computed(() => AppState),
-      account: computed(() => AppState.account)
+      account: computed(() => AppState.account),
+      async filterCars() {
+        const res = await classifiedsService.getClassifieds()
+        console.log(res.filter(c => c.listingType == 'Car'))
+      }, async filterJobs() {
+        const res = await classifiedsService.getClassifieds()
+        console.log(res.filter(c => c.listingType == 'Job'))
+      }, async filterHouses() {
+        const res = await classifiedsService.getClassifieds()
+        console.log(res.filter(c => c.listingType == 'House'))
+      }, async showAll() {
+        await classifiedsService.getClassifieds()
+      }
     }
   },
   components: { Navbar, Login, ClassifiedForm }
