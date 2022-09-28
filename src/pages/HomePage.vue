@@ -12,6 +12,26 @@
             <CarCard :car="c.listing" :seller="c.seller" @deleteClassified="deleteClassified(c.id)" />
           </router-link>
         </div>
+        <div v-if="c.listingType == 'House'">
+          <router-link :to="{
+            name: 'Details',
+            params:{
+              id: c.id
+            }
+          }">
+            <HouseCard :house="c.listing" :seller="c.seller" @deleteClassified="deleteClassified(c.id)" />
+          </router-link>
+        </div>
+        <div v-if="c.listingType == 'Job'">
+          <router-link :to="{
+            name: 'Details',
+            params:{
+              id: c.id
+            }
+          }">
+            <JobCard :job="c.listing" :seller="c.seller" @deleteClassified="deleteClassified(c.id)" />
+          </router-link>
+        </div>
       </div>
     </div>
   </div>
@@ -24,6 +44,7 @@ import { AppState } from '../AppState.js';
 import CarCard from '../components/CarCard.vue';
 import { classifiedsService } from '../services/ClassifiedsService.js';
 import Pop from '../utils/Pop.js';
+import HouseCard from '../components/HouseCard.vue';
 
 export default {
   setup() {
@@ -53,7 +74,7 @@ export default {
       }
     };
   },
-  components: { CarCard }
+  components: { CarCard, HouseCard }
 }
 </script>
 

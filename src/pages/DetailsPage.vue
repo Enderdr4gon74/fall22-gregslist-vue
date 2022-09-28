@@ -1,15 +1,18 @@
 <template>
   <div class="details" v-if="classified">
 
-    <div class="col-10 m-auto" v-if="classified.listingType == 'Car'">
-
-      <CarCard :car="classified.listing" :seller="classified.seller" />
+    
+    <div class="col-10 m-auto py-2" v-if="classified.listingType == 'Car'">
+      <RouterLink  :to="{ name: 'Home' }"> 
+        <i class="btn btn-dark mb-4">Back</i>
+      </RouterLink>
+        
+      <DetailedCarCard :car="classified.listing" :seller="classified.seller" />
     </div>
-    <div>{{classified.listingType}}</div>
 
   </div>
-  <div v-else>
-    loading...
+  <div class="d-flex justify-content-center align-items-center" v-else>
+    <img src="https://media1.giphy.com/media/3o7TKtnuHOHHUjR38Y/giphy.gif?cid=6c09b952um0m52mj4i3ec61o3vz9jy1wu7vcresa4fjvnyeu&rid=giphy.gif&ct=s" alt="loading...">
   </div>
 </template>
 
@@ -21,6 +24,7 @@ import { AppState } from '../AppState.js';
 import CarCard from '../components/CarCard.vue';
 import { classifiedsService } from '../services/ClassifiedsService.js';
 import Pop from '../utils/Pop.js';
+import DetailedCarCard from '../components/DetailedCarCard.vue';
 
 export default {
   setup() {
@@ -42,6 +46,6 @@ export default {
       classified: computed(() => AppState.activeClassified)
     };
   },
-  components: { CarCard }
+  components: { CarCard, DetailedCarCard }
 }
 </script>

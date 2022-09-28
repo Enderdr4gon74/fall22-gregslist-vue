@@ -1,14 +1,41 @@
 <template>
   <main class="container-fluid">
     <div class="row">
-      <div class="col-md-2 d-none d-md-block bg-dark text-light sidebar">
+      <div class="col-md-2 d-none d-md-block bg-dark text-light sidebar p-3 ps-4">
         <Login />
 
-        <button class="btn" data-bs-target="#classifiedsCanvas" data-bs-toggle="offcanvas" v-if="account.id">
-          <span class="text-success lighten-30 selectable text-uppercase">
-            Add a Listing
-          </span>
-        </button>
+        <div class="d-flex flex-column align-items-start border-start mt-4 ps-2">
+          <button class="btn my-2" data-bs-target="#classifiedsCanvas" data-bs-toggle="offcanvas" v-if="account.id">
+            <span class="text-success lighten-30 selectable text-uppercase">
+              Add a Listing
+            </span>
+          </button>
+        </div>
+        <div class="d-flex flex-column align-items-start border-start mt-4 ps-2">
+          <button class="btn mb-4">
+            <span class="text-success lighten-30 selectable text-uppercase">
+              Cars
+            </span>
+          </button>
+  
+          <button class="btn mb-4">
+            <span class="text-success lighten-30 selectable text-uppercase">
+              Jobs
+            </span>
+          </button>
+  
+          <button class="btn mb-4">
+            <span class="text-success lighten-30 selectable text-uppercase">
+              Houses
+            </span>
+          </button>
+  
+          <button class="btn">
+            <span class="text-success lighten-30 selectable text-uppercase">
+              All
+            </span>
+          </button>
+        </div>
 
       </div>
       <div class="col-md-10 main-content">

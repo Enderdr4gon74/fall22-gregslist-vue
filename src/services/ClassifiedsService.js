@@ -7,6 +7,7 @@ class ClassifiedsService {
   async getClassifieds() {
     const res = await SandboxApi.get('api/classifieds')
     AppState.classifieds = res.data.map(c => new Classified(c))
+    console.log(res.data)
   }
 
 

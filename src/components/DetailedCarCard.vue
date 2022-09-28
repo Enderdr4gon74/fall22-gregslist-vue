@@ -1,12 +1,15 @@
 <template>
   <div class="card">
     <img class="rounded-top" :src="car.imgUrl" :alt="car.make">
-    <div class="card-body d-flex justify-content-between align-items-center">
-      <h5>{{car.year}} {{car.make}} {{car.model}}</h5>
-      <div class="align-items-center d-flex gap-2">
-        <img :src="seller.picture" :alt="seller.name" :title="seller.name" height="30" class="rounded">
-        <i class="mdi mdi-delete-forever fs-4 selectable rounded" @click.stop="$emit('deleteClassified')"
-          v-if="account.id == seller.id"></i>
+    <div class="row">
+      <div class="col-9">
+        <h5 class="mx-2 mt-2 mb-1">{{car.year}} {{car.make}} {{car.model}}</h5>
+        <p class="fs-5 mx-3">{{car.description}}</p>
+      </div>
+      <div class="col-3 justify-content-end align-items-center d-flex gap-1">
+          <img :src="seller.picture" :alt="seller.name" :title="seller.name" height="60" class="rounded">
+          <i class="mdi mdi-delete-forever fs-4 selectable rounded me-2" @click.stop="$emit('deleteClassified')"
+            v-if="account.id == seller.id"></i>
       </div>
     </div>
   </div>
@@ -28,7 +31,7 @@ export default {
   setup(props, { emit }) {
 
     onMounted(() => {
-      // console.log('neat huh???')
+      console.log('neat huh???')
     })
 
 
