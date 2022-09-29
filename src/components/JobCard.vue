@@ -1,13 +1,15 @@
 <template>
   <div class="card rounded">
-    <div class="card-body">
-      <h4 class="text-primary">{{job.company}}</h4>
-      <h6 class="text-warning">{{job.jobTitle}}</h6>
-      <h6 class="text-success"><strong>${{job.rate}}</strong></h6>
-      <h6 class="text-dark">{{job.hours}} hours a week</h6>
-      <p class="text-dark">{{job.description}}</p>
-      <i class="mdi mdi-delete-forever fs-4 selectable rounded" @click.stop="$emit('deleteClassified')"
-        v-if="account.id == seller.id"></i>
+    <div class="card-body row">
+      <div class="col-9">
+        <h4 class="text-primary">{{job.company}}</h4>
+        <h6 class="text-warning">{{job.jobTitle}}</h6>
+      </div>
+      <div class="col-3 d-flex align-items-center justify-content-end pe-2">
+        <img :src="seller.picture" :alt="seller.name" :title="seller.name" height="30" class="rounded">
+        <i class="mdi mdi-delete-forever fs-4 selectable rounded" @click.stop="$emit('deleteClassified')"
+          v-if="account.id == seller.id"></i>
+      </div>
     </div>
   </div>
 </template>

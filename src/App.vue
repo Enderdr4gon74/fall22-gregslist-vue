@@ -71,14 +71,17 @@ export default {
       appState: computed(() => AppState),
       account: computed(() => AppState.account),
       async filterCars() {
-        const res = await classifiedsService.getClassifieds()
+        const res = await classifiedsService.getClassifiedsAndReturn()
         console.log(res.filter(c => c.listingType == 'Car'))
+        AppState.classifieds = res.filter(c => c.listingType == 'Car')
       }, async filterJobs() {
-        const res = await classifiedsService.getClassifieds()
+        const res = await classifiedsService.getClassifiedsAndReturn()
         console.log(res.filter(c => c.listingType == 'Job'))
+        AppState.classifieds = res.filter(c => c.listingType == 'Job')
       }, async filterHouses() {
-        const res = await classifiedsService.getClassifieds()
+        const res = await classifiedsService.getClassifiedsAndReturn()
         console.log(res.filter(c => c.listingType == 'House'))
+        AppState.classifieds = res.filter(c => c.listingType == 'House')
       }, async showAll() {
         await classifiedsService.getClassifieds()
       }

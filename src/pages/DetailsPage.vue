@@ -7,7 +7,23 @@
         <i class="btn btn-dark mb-4">Back</i>
       </RouterLink>
         
-      <DetailedCarCard :car="classified.listing" :seller="classified.seller" />
+      <DetailedCarCard :car="classified.listing" :seller="classified.seller" @deleteClassified="deleteClassified(classified.id)" />
+    </div>
+    
+    <div class="col-10 m-auto py-2" v-if="classified.listingType == 'House'">
+      <RouterLink  :to="{ name: 'Home' }"> 
+        <i class="btn btn-dark mb-4">Back</i>
+      </RouterLink>
+        
+      <DetailedHouseCard :house="classified.listing" :seller="classified.seller" @deleteClassified="deleteClassified(classified.id)" />
+    </div>
+    
+    <div class="col-10 m-auto py-2" v-if="classified.listingType == 'Job'">
+      <RouterLink  :to="{ name: 'Home' }"> 
+        <i class="btn btn-dark mb-4">Back</i>
+      </RouterLink>
+        
+      <DetailedJobCard :job="classified.listing" :seller="classified.seller" @deleteClassified="deleteClassified(classified.id)" />
     </div>
 
   </div>
@@ -25,6 +41,8 @@ import CarCard from '../components/CarCard.vue';
 import { classifiedsService } from '../services/ClassifiedsService.js';
 import Pop from '../utils/Pop.js';
 import DetailedCarCard from '../components/DetailedCarCard.vue';
+import DetailedHouseCard from '../components/DetailedHouseCard.vue';
+import DetailedJobCard from '../components/DetailedJobCard.vue';
 
 export default {
   setup() {
@@ -43,9 +61,18 @@ export default {
       getClassifiedById();
     });
     return {
-      classified: computed(() => AppState.activeClassified)
+      classified: computed(() => AppState.activeClassified),
+      async deleteClassified(id) {
+        try {
+          const yes = await Pop.confirm('Delete the Listing?')
+          if (!yes) { return }
+          await classifiedsService.deleteClassified(id)
+        } catch (error) {
+          Pop.error(error, '[Deleting Classified]')
+        }
+      }
     };
   },
-  components: { CarCard, DetailedCarCard }
+  components: { CarCard, DetailedCarCard, DetailedHouseCard, DetailedJobCard }
 }
 </script>
