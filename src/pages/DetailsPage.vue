@@ -58,6 +58,7 @@ export default {
       }
     }
     onMounted(() => {
+      AppState.activeClassified = {seller:{}}
       getClassifiedById();
     });
     return {
